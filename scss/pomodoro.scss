@@ -1,0 +1,32 @@
+$container-width: 85vw;
+$container-height: 85vh;
+
+$settings-width: 70vw;
+$settings-height: 15vh;
+
+$timer-width: 50vw;
+$timer-height: 30vh;
+
+.container {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: $container-width;
+  height: $container-height;
+}
+
+.settings {
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  width: $settings-width;
+  height: $settings-height;
+}
+
+.timer {
+  border: 1px solid black;
+  width: $timer-width;
+  height: $timer-height;
+}

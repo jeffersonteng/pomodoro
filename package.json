@@ -1,0 +1,26 @@
+{
+  "name": "pomodoro",
+  "version": "1.0.0",
+  "description": "A pomodoro timer",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.2.0"
+  },
+  "devDependencies": {
+    "del": "^2.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeffersonteng/pomodoro.git"
+  },
+  "author": "Jefferson Teng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeffersonteng/pomodoro/issues"
+  },
+  "homepage": "https://github.com/jeffersonteng/pomodoro#readme"
+}
