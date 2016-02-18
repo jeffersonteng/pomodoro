@@ -7,6 +7,12 @@ $settings-height: 15vh;
 $timer-width: 50vw;
 $timer-height: 30vh;
 
+$break-width: 25vw;
+$break-height: 12vh;
+
+$session-width: 25vw;
+$session-height: 12vh;
+
 .container {
   border: 1px solid black;
   display: flex;
@@ -19,11 +25,25 @@ $timer-height: 30vh;
 
 .settings {
   display: flex;
+  justify-content: space-around;
   align-items: center;
   border: 1px solid black;
   width: $settings-width;
   height: $settings-height;
+
+  .break {
+    border: 1px solid black;
+    width: $break-width;
+    height: $break-height;
+  }
+
+  .session {
+    border: 1px solid black;
+    width: $break-width;
+    height: $break-height;
+  }
 }
+
 
 .timer {
   border: 1px solid black;
