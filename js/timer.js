@@ -17,7 +17,10 @@ function getTime(seconds) {
     var seconds = seconds % 60;
 
     if (seconds === 0) {
-        seconds = '00';
+        return minutes + ":00";
+    }
+    if (seconds < 10) {
+        return minutes + ":0" + seconds;
     }
 
     return minutes + ":" + seconds;
