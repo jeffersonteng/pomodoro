@@ -25,4 +25,7 @@ function getTime(seconds) {
 
     return minutes + ":" + seconds;
 }
-startTimer(60);
+
+$(document).ready(function() {
+    startTimer(60);
+});
