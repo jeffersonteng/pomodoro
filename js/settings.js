@@ -29,7 +29,10 @@ function TimerSettings() {
     }
 
     function decreaseBreakTimer() {
-        $breakTime.text(getBreakTime() - 1);
+        var currTime = getBreakTime();
+        if (currTime === 0) return;
+
+        $breakTime.text(currTime - 1);
     }
 
     function increaseBreakTimer() {
@@ -37,7 +40,10 @@ function TimerSettings() {
     }
 
     function decreaseSessionTimer() {
-        $sessionTime.text(getSessionTime() - 1);
+        var currTime = getSessionTime();
+        if (currTime === 0) return;
+
+        $sessionTime.text(currTime - 1);
     }
 
     function increaseSessionTimer() {
