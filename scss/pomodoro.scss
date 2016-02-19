@@ -1,17 +1,21 @@
 $container-width: 85vw;
 $container-height: 85vh;
 
-$settings-width: 70vw;
-$settings-height: 15vh;
+$settings-container-width: 70vw;
+$settings-container-height: 15vh;
 
-$timer-width: 50vw;
-$timer-height: 30vh;
+$timer-width: 30vw;
+$timer-height: 15vh;
 
 $break-width: 25vw;
 $break-height: 12vh;
 
 $session-width: 25vw;
 $session-height: 12vh;
+
+$settings-button-width: 6vw;
+$settings-button-height: 4vh;
+
 
 .container {
   border: 1px solid black;
@@ -30,25 +34,101 @@ $session-height: 12vh;
   justify-content: space-around;
   align-items: center;
   border: 1px solid black;
-  width: $settings-width;
-  height: $settings-height;
+  width: $settings-container-width;
+  height: $settings-container-height;
 
   .break {
     border: 1px solid black;
     width: $break-width;
     height: $break-height;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    .decreaseBreak {
+      font-size: 2rem;
+      font-family: Lato, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid black;
+      width: $settings-button-width;
+      height: $settings-button-height;
+    }
+
+    .breakTime {
+      font-size: 2rem;
+      font-family: Lato, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid black;
+      width: $settings-button-width;
+      height: $settings-button-height;
+    }
+
+    .increaseBreak {
+      font-size: 2rem;
+      font-family: Lato, sans-serif;
+      border: 1px solid black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: $settings-button-width;
+      height: $settings-button-height;
+    }
   }
 
   .session {
     border: 1px solid black;
     width: $break-width;
     height: $break-height;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    .decreaseSession {
+      font-size: 2rem;
+      font-family: Lato, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid black;
+      width: $settings-button-width;
+      height: $settings-button-height;
+    }
+
+    .sessionTime {
+      font-size: 2rem;
+      font-family: Lato, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid black;
+      width: $settings-button-width;
+      height: $settings-button-height;
+    }
+
+    .increaseSession {
+      font-size: 2rem;
+      font-family: Lato, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid black;
+      width: $settings-button-width;
+      height: $settings-button-height;
+    }
   }
 }
 
-
 .timer {
+  display: flex;
+  justify-content: center;
+  font-size: 5rem;
+  font-family: Lato, sans-serif;
   border: 1px solid black;
   width: $timer-width;
   height: $timer-height;
+  line-height: $timer-height;
 }
