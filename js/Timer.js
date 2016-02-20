@@ -84,6 +84,7 @@ function Timer() {
     function switchTimer() {
         stopTimer();
         timerSettings.switchTimer();
+        updateDisplayTime();
         startTimer();
     }
 
