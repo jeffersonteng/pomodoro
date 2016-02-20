@@ -1,8 +1,10 @@
-function Timer(minutes) {
-    var zeroTime = "0:00";
-    var timeRemaining = 60 * minutes;
+function Timer() {
+    var ZERO_TIME = "0:00";
+
     var intervalId = undefined;
     var timerSettings = new TimerSettings();
+
+    var currentTimer = TimerEnum.SESSION;
 
     function enableSettings() {
         timerSettings.addBreakListeners();
@@ -14,22 +16,41 @@ function Timer(minutes) {
         timerSettings.removeSessionListeners();
     }
 
+    function switchTimer() {
+        stopTimer();
+        var nextTimer = undefined;
+
+        if (currentTimer === TimerEnum.SESSION) {
+            nextTimer = TimerEnum.BREAK;
+        }
+
+        if (currentTimer === TimerEnum.BREAK) {
+            nextTimer = TimerEnum.SESSION;
+        }
+
+        currentTimer = nextTimer;
+        startTimer();
+    }
+
     function startTimer() {
-        if (timeRemaining === 0) return;
+        var timeRemaining = timerSettings.getDisplayTime(currentTimer);
+
+        if (timeRemaining === ZERO_TIME) return;
 
         disableSettings();
 
-        $(".timer").text(getTime(timeRemaining));
+        $(".timer").text(timeRemaining);
 
         intervalId = setInterval(function () {
             if (timeRemaining === 0) {
-                $(".timer").text(getTime(timeRemaining));
-                stopTimer();
+                $(".timer").text(timeRemaining);
+                switchTimer();
                 return true;
             }
 
-            var time = getTime(--timeRemaining);
-            $(".timer").text(time);
+            timeRemaining = timerSettings.decrementTime(currentTimer);
+
+            $(".timer").text(timeRemaining);
         }, 1000);
     }
 
@@ -38,22 +59,6 @@ function Timer(minutes) {
         clearInterval(intervalId);
     }
 
-    function getTime(seconds) {
-        if (seconds === 0) return zeroTime;
-
-        var minutes = Math.floor(seconds / 60);
-
-        var seconds = seconds % 60;
-
-        if (seconds === 0) {
-            return minutes + ":00";
-        }
-        if (seconds < 10) {
-            return minutes + ":0" + seconds;
-        }
-
-        return minutes + ":" + seconds;
-    }
 
     return {
         startTimer: startTimer,
