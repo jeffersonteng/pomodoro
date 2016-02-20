@@ -20,6 +20,16 @@ function TimerSettings() {
         $increaseSession.on("click", increaseSessionTimer);
     }
 
+    function removeBreakListeners() {
+        $decreaseBreak.off("click");
+        $increaseBreak.off("click");
+    }
+
+    function removeSessionListeners() {
+        $decreaseSession.off("click");
+        $increaseSession.off("click");
+    }
+
     function getBreakTime() {
         return parseInt($breakTime.text());
     }
@@ -52,12 +62,8 @@ function TimerSettings() {
 
     return {
         addBreakListeners: addBreakListeners,
-        addSessionListeners: addSessionListeners
+        addSessionListeners: addSessionListeners,
+        removeBreakListeners: removeBreakListeners,
+        removeSessionListeners: removeSessionListeners
     }
 }
-
-$(document).ready(function() {
-    var timerSettings = new TimerSettings();
-    timerSettings.addBreakListeners();
-    timerSettings.addSessionListeners();
-});

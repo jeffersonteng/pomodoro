@@ -1,31 +1,63 @@
-/**
- * Created by jteng on 2/17/16.
- */
-function startTimer(minutes) {
-    var currentTimeInSeconds = 60 * minutes;
-    $(".timer").text(getTime(currentTimeInSeconds--));
+function Timer(minutes) {
+    var zeroTime = "0:00";
+    var timeRemaining = 60 * minutes;
+    var intervalId = undefined;
+    var timerSettings = new TimerSettings();
 
-    setInterval(function() {
-        var time = getTime(currentTimeInSeconds--);
-        $(".timer").text(time);
-    }, 1000);
-}
-
-function getTime(seconds) {
-    var minutes = Math.floor(seconds / 60);
-
-    var seconds = seconds % 60;
-
-    if (seconds === 0) {
-        return minutes + ":00";
-    }
-    if (seconds < 10) {
-        return minutes + ":0" + seconds;
+    function enableSettings() {
+        timerSettings.addBreakListeners();
+        timerSettings.addSessionListeners();
     }
 
-    return minutes + ":" + seconds;
+    function disableSettings() {
+        timerSettings.removeBreakListeners();
+        timerSettings.removeSessionListeners();
+    }
+
+    function startTimer() {
+        if (timeRemaining === 0) return;
+
+        disableSettings();
+
+        $(".timer").text(getTime(timeRemaining));
+
+        intervalId = setInterval(function () {
+            if (timeRemaining === 0) {
+                $(".timer").text(getTime(timeRemaining));
+                stopTimer();
+                return true;
+            }
+
+            var time = getTime(--timeRemaining);
+            $(".timer").text(time);
+        }, 1000);
+    }
+
+    function stopTimer() {
+        enableSettings();
+        clearInterval(intervalId);
+    }
+
+    function getTime(seconds) {
+        if (seconds === 0) return zeroTime;
+
+        var minutes = Math.floor(seconds / 60);
+
+        var seconds = seconds % 60;
+
+        if (seconds === 0) {
+            return minutes + ":00";
+        }
+        if (seconds < 10) {
+            return minutes + ":0" + seconds;
+        }
+
+        return minutes + ":" + seconds;
+    }
+
+    return {
+        startTimer: startTimer,
+        stopTimer: stopTimer
+    }
 }
 
-$(document).ready(function() {
-    startTimer(60);
-});
