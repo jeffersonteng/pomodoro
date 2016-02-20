@@ -79,10 +79,12 @@ function TimerSettings() {
 
         if (currentTimer === TimerEnum.SESSION) {
             nextTimer = TimerEnum.BREAK;
+            $(".state").text("Break");
         }
 
         if (currentTimer === TimerEnum.BREAK) {
             nextTimer = TimerEnum.SESSION;
+            $(".state").text("Session");
         }
 
         currentTimer = nextTimer;

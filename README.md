@@ -1,4 +1,5 @@
-1. Run `npm install`.
-1. Run `gulp` at the project root.
-2. Open index.html in your favorite browser.
+At project root:
 
+1. `npm install`
+2. `gulp`
+3. Open index.html in your favorite browser.
