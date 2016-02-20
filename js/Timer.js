@@ -11,8 +11,17 @@ function Timer() {
     var intervalId = undefined;
     var timerSettings = new TimerSettings();
 
+    function refreshSessionDisplayTime() {
+        timerSettings.refreshSessionDisplayTime();
+        updateDisplayTime();
+    }
+
+    function refreshBreakDisplayTime() {
+        timerSettings.refreshBreakDisplayTime();
+        updateDisplayTime();
+    }
+
     function updateDisplayTime() {
-        timerSettings.refreshDisplayTime();
         $(".timer").text(timerSettings.getDisplayTime());
     }
 
@@ -21,12 +30,12 @@ function Timer() {
         if (currTime === 0) return;
 
         $breakTime.text(currTime - 1);
-        updateDisplayTime();
+        refreshBreakDisplayTime();
     }
 
     function increaseBreakTimer() {
         $breakTime.text(timerSettings.getBreakTimeInMinutes() + 1);
-        updateDisplayTime();
+        refreshBreakDisplayTime();
     }
 
     function decreaseSessionTimer() {
@@ -34,12 +43,12 @@ function Timer() {
         if (currTime === 0) return;
 
         $sessionTime.text(currTime - 1);
-        updateDisplayTime();
+        refreshSessionDisplayTime();
     }
 
     function increaseSessionTimer() {
         $sessionTime.text(timerSettings.getSessionTimeInMinutes() + 1);
-        updateDisplayTime();
+        refreshSessionDisplayTime();
     }
 
     function addBreakListeners() {
@@ -88,7 +97,7 @@ function Timer() {
         $(".timer").text(timeRemaining);
 
         intervalId = setInterval(function () {
-            if (timeRemaining === 0) {
+            if (timeRemaining === ZERO_TIME) {
                 $(".timer").text(timeRemaining);
                 switchTimer();
                 return true;

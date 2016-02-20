@@ -8,8 +8,8 @@ function TimerSettings() {
     var $sessionTime = $('.sessionTime');
 
     var currentTimer = TimerEnum.SESSION;
-    var breakTimeRemaining = undefined;
-    var sessionTimeRemaining = undefined;
+    var breakTimeRemaining = getBreakTimeInSeconds();
+    var sessionTimeRemaining = getSessionTimeInSeconds();
 
     var ZERO_TIME = "0:00";
 
@@ -29,16 +29,15 @@ function TimerSettings() {
         return 60 * getSessionTimeInMinutes();
     }
 
-    function refreshDisplayTime() {
-        breakTimeRemaining = getBreakTimeInSeconds();
+    function refreshSessionDisplayTime() {
         sessionTimeRemaining = getSessionTimeInSeconds();
     }
 
-    function getDisplayTime() {
-        if (breakTimeRemaining === undefined || sessionTimeRemaining === undefined) {
-            refreshDisplayTime();
-        }
+    function refreshBreakDisplayTime() {
+        breakTimeRemaining = getBreakTimeInSeconds();
+    }
 
+    function getDisplayTime() {
         var seconds = undefined;
 
         if (currentTimer === TimerEnum.SESSION) {
@@ -95,6 +94,7 @@ function TimerSettings() {
         switchTimer: switchTimer,
         getSessionTimeInMinutes: getSessionTimeInMinutes,
         getBreakTimeInMinutes: getBreakTimeInMinutes,
-        refreshDisplayTime: refreshDisplayTime
+        refreshSessionDisplayTime: refreshSessionDisplayTime,
+        refreshBreakDisplayTime: refreshBreakDisplayTime
     }
 }
