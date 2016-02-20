@@ -3,37 +3,15 @@
  */
 
 function TimerSettings() {
-    var $decreaseBreak = $('.decreaseBreak');
-    var $increaseBreak = $('.increaseBreak');
-    var $decreaseSession = $('.decreaseSession');
-    var $increaseSession = $('.increaseSession');
+
     var $breakTime = $('.breakTime');
     var $sessionTime = $('.sessionTime');
 
-    var breakTimeRemaining = getBreakTimeInSeconds();
-    var sessionTimeRemaining = getSessionTimeInSeconds();
+    var currentTimer = TimerEnum.SESSION;
+    var breakTimeRemaining = undefined;
+    var sessionTimeRemaining = undefined;
 
     var ZERO_TIME = "0:00";
-
-    function addBreakListeners() {
-        $decreaseBreak.on("click", decreaseBreakTimer);
-        $increaseBreak.on("click", increaseBreakTimer);
-    }
-
-    function addSessionListeners() {
-        $decreaseSession.on("click", decreaseSessionTimer);
-        $increaseSession.on("click", increaseSessionTimer);
-    }
-
-    function removeBreakListeners() {
-        $decreaseBreak.off("click");
-        $increaseBreak.off("click");
-    }
-
-    function removeSessionListeners() {
-        $decreaseSession.off("click");
-        $increaseSession.off("click");
-    }
 
     function getBreakTimeInMinutes() {
         return parseInt($breakTime.text());
@@ -51,29 +29,16 @@ function TimerSettings() {
         return 60 * getSessionTimeInMinutes();
     }
 
-    function decreaseBreakTimer() {
-        var currTime = getBreakTimeInMinutes();
-        if (currTime === 0) return;
-
-        $breakTime.text(currTime - 1);
+    function refreshDisplayTime() {
+        breakTimeRemaining = getBreakTimeInSeconds();
+        sessionTimeRemaining = getSessionTimeInSeconds();
     }
 
-    function increaseBreakTimer() {
-        $breakTime.text(getBreakTimeInMinutes() + 1);
-    }
+    function getDisplayTime() {
+        if (breakTimeRemaining === undefined || sessionTimeRemaining === undefined) {
+            refreshDisplayTime();
+        }
 
-    function decreaseSessionTimer() {
-        var currTime = getSessionTimeInMinutes();
-        if (currTime === 0) return;
-
-        $sessionTime.text(currTime - 1);
-    }
-
-    function increaseSessionTimer() {
-        $sessionTime.text(getSessionTimeInMinutes() + 1);
-    }
-
-    function getDisplayTime(currentTimer) {
         var seconds = undefined;
 
         if (currentTimer === TimerEnum.SESSION) {
@@ -99,7 +64,7 @@ function TimerSettings() {
         return minutes + ":" + seconds;
     }
 
-    function decrementTime(currentTimer) {
+    function decrementTime() {
         if (currentTimer === TimerEnum.SESSION) {
             sessionTimeRemaining--;
             return getDisplayTime(currentTimer);
@@ -110,12 +75,26 @@ function TimerSettings() {
         }
     }
 
+    function switchTimer() {
+        var nextTimer = undefined;
+
+        if (currentTimer === TimerEnum.SESSION) {
+            nextTimer = TimerEnum.BREAK;
+        }
+
+        if (currentTimer === TimerEnum.BREAK) {
+            nextTimer = TimerEnum.SESSION;
+        }
+
+        currentTimer = nextTimer;
+    }
+
     return {
-        addBreakListeners: addBreakListeners,
-        addSessionListeners: addSessionListeners,
-        removeBreakListeners: removeBreakListeners,
-        removeSessionListeners: removeSessionListeners,
         getDisplayTime: getDisplayTime,
-        decrementTime: decrementTime
+        decrementTime: decrementTime,
+        switchTimer: switchTimer,
+        getSessionTimeInMinutes: getSessionTimeInMinutes,
+        getBreakTimeInMinutes: getBreakTimeInMinutes,
+        refreshDisplayTime: refreshDisplayTime
     }
 }
