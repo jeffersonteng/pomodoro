@@ -5,7 +5,7 @@ $settings-container-width: 70vw;
 $settings-container-height: 15vh;
 
 $timer-width: 30vw;
-$timer-height: 15vh;
+$timer-height: 12vh;
 
 $break-width: 25vw;
 $break-height: 12vh;
@@ -131,4 +131,22 @@ $settings-button-height: 3rem;
   width: $timer-width;
   height: $timer-height;
   line-height: $timer-height;
+}
+
+.state {
+  font-size: 1.5rem;
+  font-family: Lato, sans-serif;
+  text-align: center;
+}
+
+#redPom {
+  width: 50px;
+  height: 50px;
+}
+
+#greenPom {
+  position: relative;
+  top: -7px;
+  width: 40px;
+  height: 40px;
 }
