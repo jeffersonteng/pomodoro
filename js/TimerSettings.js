@@ -79,14 +79,14 @@ function TimerSettings() {
 
         if (currentTimer === TimerEnum.SESSION) {
             nextTimer = TimerEnum.BREAK;
-            $(".state").text("Break");
+            $(".state").text("On Break");
             $("#redPom").hide();
             $("#greenPom").show();
         }
 
         if (currentTimer === TimerEnum.BREAK) {
             nextTimer = TimerEnum.SESSION;
-            $(".state").text("Session");
+            $(".state").text("In Session");
             $("#greenPom").hide();
             $("#redPom").show();
         }
