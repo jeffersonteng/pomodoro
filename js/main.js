@@ -9,7 +9,7 @@ function Pomodoro() {
         var timer = new Timer(0.05);
         timer.startTimer();
 
-        $(".timer").on("click", function() {
+        $(".timerContainer").on("click", function() {
             if (count++ % 2 === 0) {
                 timer.stopTimer()
                 return true;

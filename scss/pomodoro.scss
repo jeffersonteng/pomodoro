@@ -1,24 +1,23 @@
 $container-width: 85vw;
 $container-height: 85vh;
 
-$settings-container-width: 70vw;
-$settings-container-height: 15vh;
+$settings-container-width: 60vw;
+$settings-container-height: 11vh;
 
 $timer-width: 30vw;
 $timer-height: 12vh;
 
-$break-width: 25vw;
-$break-height: 12vh;
+$break-width: 20vw;
+$break-height: 8vh;
 
-$session-width: 25vw;
-$session-height: 12vh;
+$session-width: 20vw;
+$session-height: 8vh;
 
 $settings-button-width: 2.5rem;
 $settings-button-height: 3rem;
 
 
 .container {
-  border: 1px solid black;
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -29,16 +28,25 @@ $settings-button-height: 3rem;
   height: $container-height;
 }
 
+.timerContainer {
+  border-radius: 50%;
+  width: 300px;
+  height: 300px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .settings {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border: 1px solid black;
   width: $settings-container-width;
   height: $settings-container-height;
 
   .break {
-    border: 1px solid black;
     width: $break-width;
     height: $break-height;
     display: flex;
@@ -51,7 +59,6 @@ $settings-button-height: 3rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid black;
       width: $settings-button-width;
       height: $settings-button-height;
     }
@@ -62,7 +69,6 @@ $settings-button-height: 3rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid black;
       width: $settings-button-width;
       height: $settings-button-height;
     }
@@ -70,7 +76,6 @@ $settings-button-height: 3rem;
     .increaseBreak {
       font-size: 2rem;
       font-family: Lato, sans-serif;
-      border: 1px solid black;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -80,7 +85,6 @@ $settings-button-height: 3rem;
   }
 
   .session {
-    border: 1px solid black;
     width: $break-width;
     height: $break-height;
     display: flex;
@@ -93,7 +97,6 @@ $settings-button-height: 3rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid black;
       width: $settings-button-width;
       height: $settings-button-height;
     }
@@ -104,7 +107,6 @@ $settings-button-height: 3rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid black;
       width: $settings-button-width;
       height: $settings-button-height;
     }
@@ -115,7 +117,6 @@ $settings-button-height: 3rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid black;
       width: $settings-button-width;
       height: $settings-button-height;
     }
@@ -127,7 +128,6 @@ $settings-button-height: 3rem;
   justify-content: center;
   font-size: 5rem;
   font-family: Lato, sans-serif;
-  border: 1px solid black;
   width: $timer-width;
   height: $timer-height;
   line-height: $timer-height;
@@ -154,4 +154,17 @@ $settings-button-height: 3rem;
 .settingsHeading {
   text-align: center;
   font-family: Lato, sans-serif;
+}
+
+.settingsBtn {
+  border: none;
+}
+
+.btn {
+  &:hover {
+    cursor: pointer;
+  }
+  &:focus {
+    outline: none;
+  }
 }
